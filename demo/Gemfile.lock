@@ -21,6 +21,7 @@ PATH
     jekyll_badge (0.1.0)
       jekyll (>= 3.5.0)
       jekyll_plugin_support (>= 0.7.0)
+      ruby-link-checker
 
 GEM
   remote: https://rubygems.org/
@@ -196,6 +197,7 @@ GEM
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
+    ruby-link-checker (0.2.0)
     ruby-progressbar (1.13.0)
     ruby-rc4 (0.1.5)
     safe_yaml (1.0.5)

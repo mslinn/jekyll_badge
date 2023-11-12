@@ -104,8 +104,16 @@ pre {
   width: 690px;
 }
 
+.bg_pink {
+  background-color: pink;
+}
+
 .bg_yellow {
   background-color: yellow;
+}
+
+.clear {
+  clear: both;
 }
 
 .codeLabel {
@@ -162,7 +170,8 @@ pre {
 
 /* Start of jekyll_badge classes */
 .center {
-  display: block;
+  display: flex;
+  width: fit-content;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
@@ -196,6 +205,11 @@ pre {
   margin-right: 1em;
 }
 
+.one_column {
+  display: flex;
+  flex-direction: column;
+}
+
 .right {
   float: right;
   margin-left: 1em;
@@ -210,6 +224,7 @@ pre {
 .shadow {
   border: thin gray solid;
   box-shadow: 5px 5px 6px #999;
+  margin-bottom: 6px;
 }
 /* End of jekyll_badge classes */
 
