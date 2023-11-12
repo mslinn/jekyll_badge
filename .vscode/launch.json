@@ -5,6 +5,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "args": [
+      "serve",
+      "--livereload_port", "35733",
+      "--force_polling",
+      "--host", "0.0.0.0",
+      "--port", "4012",
+      "--future",
+      "--incremental",
+      "--livereload",
+      "--drafts",
+      "--unpublished"
+    ],
+    "cwd": "${workspaceRoot}/demo",
+    "debugPort": "0",
+    "name": "Debug Demo",
+    "request": "launch",
+    "script": "${workspaceRoot}/binstub/jekyll",
+    "type": "rdbg",
+    "useBundler": true,
+  },
+  {
       "name": "Run selected Ruby file",
       "program": "ruby ${file}",
       "request": "launch",

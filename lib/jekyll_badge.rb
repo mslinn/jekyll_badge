@@ -1,47 +1,64 @@
 require 'jekyll_plugin_support'
-require_relative 'jekyll_badge/version.rb'
+require_relative 'jekyll_badge/version'
 
-# This Jekyll tag plugin is a minimal example.
-#
-# See https://www.mslinn.com/jekyll/10200-jekyll-plugin-background.html
-# See https://www.mslinn.com/jekyll/10400-jekyll-plugin-template-collection.html
-#
-# @example Heading for this example
-#   {% jekyll_badge param1='value1' %}
-#
-# The Jekyll log level defaults to :info, which means all the Jekyll.logger statements below will not generate output.
-# You can control the log level when you start Jekyll.
-# To set the log level to :debug, write an entry into _config.yml, like this:
-# plugin_loggers:
-#   JekyllBadge: debug
 module JekyllBadge
-  # This class implements the Jekyll jekyll_badge functionality
+  # This class implements the jekyll_badge functionality
+  # Assumes project is stored on GitHub
   class JekyllBadge < JekyllSupport::JekyllTag
     PLUGIN_NAME = 'jekyll_badge'.freeze
-    VERSION = Badge::VERSION
+    VERSION = ::JekyllBadge::VERSION
 
-    # Put your plugin logic here.
-    # The following variables are predefined:
-    #   @argument_string, @config, @envs, @helper, @layout, @logger, @mode, @page, @paginator, @site, @tag_name and @theme
-    #
-    # @param tag_name [String] is the name of the tag, which we already know.
-    # @param argument_string [String] the arguments from the web page.
-    # @param tokens [Liquid::ParseContext] tokenized command line
-    # @return [void]
     def render_impl
-      @align = @helper.parameter_specified? 'align' # Obtain the value of parameter align
-      @class = @helper.parameter_specified? 'class' # Obtain the value of parameter class
-      @label = @helper.parameter_specified? 'label' # Obtain the value of parameter label
-      @style = @helper.parameter_specified? 'style' # Obtain the value of parameter style
-      <<~END_OUTPUT
-        <pre class="example">
-          @align='#{@align}'
-          @class='#{@class}'
-          @label='#{@label}'
-          @style='#{@style}'
-          Remaining markup: '#{@helper.remaining_markup}'.
-        </pre>
-      END_OUTPUT
+      @name         = @helper.parameter_specified?('name')  || @page['name']
+      @align        = @helper.parameter_specified?('align') || 'right'
+      @class        = @helper.parameter_specified?('class') || 'rounded shadow'
+      # TODO: put this into _config.yml
+      @image        = @helper.parameter_specified?('image') || '/blog/images/git/github-mark'
+      @label        = @helper.parameter_specified?('label') || @name
+      @style        = @helper.parameter_specified?('style') || ''
+      @git_url_base = @helper.parameter_specified?('git_url_base') || 'https://github.com/mslinn'
+      @git_url      = @helper.parameter_specified?('git_url') || "#{@git_url_base}/#{@name}"
+      generate_output
+    end
+
+    private
+
+    def generate_output
+      <<~END_CONTENT
+        <div class="gem_banner #{@align} #{@class}" style='#{@style}'>
+          <div class="one_column" style="text-align: center;">
+            <a href='https://rubygems.org/gems/#{@name}' target='_blank' class='imgImgUrl'>
+              #{"<code>#{@name}</code>" if @label}
+              <div class='imgWrapper imgFlex' style='margin-bottom: 0;'>
+                  <picture class='imgPicture'>
+                    <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/webp">
+                    <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/png">
+                    <img alt='#{@name} version'
+                      class="imgImg"
+                      src="https://badge.fury.io/rb/#{@name}.svg"
+                      style='width: 100%;'
+                      title='#{@name} version'
+                    />
+                  </picture>
+                </a>
+              </div>
+              <div class='imgWrapper imgFlex' style='width: 120px;'>
+                <a href='https://github.com/mslinn/#{@name}' target='_blank' class='imgImgUrl'>
+                  <picture class='imgPicture'>
+                    <source srcset="#{@image}.webp" type="image/webp">
+                    <source srcset="#{@image}.png" type="image/png">
+                    <img alt='GitHub project for #{@name}'
+                      class="imgImg"
+                      src="/blog/images/git/github-mark.png"
+                      style='width: 100%;'
+                      title='Git project for #{@name}'
+                    />
+                  </picture>
+              </div>
+            </a>
+          </div>
+        </div>
+      END_CONTENT
     end
 
     JekyllPluginHelper.register(self, PLUGIN_NAME)
