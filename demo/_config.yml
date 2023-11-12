@@ -41,8 +41,8 @@ plugins: # Use file name of the plugin entry point, not the gem name
   - jekyll
   - jekyll_plugin_logger
   - html-proofer
-  - badge
+  - jekyll_badge
 sass:
   style: compressed
-title: badge Demonstration
+title: jekyll_badge Demonstration
 url: https://bogus.jekylldemo.com

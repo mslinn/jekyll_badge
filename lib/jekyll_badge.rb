@@ -1,5 +1,5 @@
 require 'jekyll_plugin_support'
-require_relative 'badge/version.rb'
+require_relative 'jekyll_badge/version.rb'
 
 # This Jekyll tag plugin is a minimal example.
 #
@@ -7,17 +7,17 @@ require_relative 'badge/version.rb'
 # See https://www.mslinn.com/jekyll/10400-jekyll-plugin-template-collection.html
 #
 # @example Heading for this example
-#   {% badge param1='value1' %}
+#   {% jekyll_badge param1='value1' %}
 #
 # The Jekyll log level defaults to :info, which means all the Jekyll.logger statements below will not generate output.
 # You can control the log level when you start Jekyll.
 # To set the log level to :debug, write an entry into _config.yml, like this:
 # plugin_loggers:
-#   Badge: debug
-module Badge
-  # This class implements the Jekyll badge functionality
-  class Badge < JekyllSupport::JekyllTag
-    PLUGIN_NAME = 'badge'.freeze
+#   JekyllBadge: debug
+module JekyllBadge
+  # This class implements the Jekyll jekyll_badge functionality
+  class JekyllBadge < JekyllSupport::JekyllTag
+    PLUGIN_NAME = 'jekyll_badge'.freeze
     VERSION = Badge::VERSION
 
     # Put your plugin logic here.

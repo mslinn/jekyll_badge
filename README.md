@@ -1,4 +1,4 @@
-# `Badge` [![Gem Version](https://badge.fury.io/rb/badge.svg)](https://badge.fury.io/rb/badge)
+# `Badge` [![Gem Version](https://jekyll_badge.fury.io/rb/jekyll_badge.svg)](https://jekyll_badge.fury.io/rb/jekyll_badge)
 
 Description of Badge
 
@@ -9,7 +9,7 @@ Add the following to your Jekyll website's `Gemfile`:
 
 ```ruby
 group :jekyll_plugins do
-  gem 'badge'
+  gem 'jekyll_badge'
 end
 ```
 
@@ -73,7 +73,7 @@ $ bundle exec rake release
 
 ## Contributing
 
-Bug reports and pull requests are welcome at https://github.com/mslinn/badge.
+Bug reports and pull requests are welcome at https://github.com/mslinn/jekyll_badge.
 
 
 ## License

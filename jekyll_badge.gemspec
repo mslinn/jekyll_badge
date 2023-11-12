@@ -1,16 +1,15 @@
-require_relative 'lib/badge/version'
+require_relative 'lib/jekyll_badge/version'
 
 Gem::Specification.new do |spec|
-  host = 'https://github.com/mslinn/badge'
+  host = 'https://github.com/mslinn/jekyll_badge'
 
   spec.authors               = ['Mike Slinn']
   spec.description           = <<~END_DESC
-    Write a longer description of the gem.
-    Use as many lines as you like.
+    Displays a badge on a Jekyll page for the package showing its version
   END_DESC
   spec.email                 = ['mslinn@mslinn.com']
   spec.files                 = Dir['.rubocop.yml', 'LICENSE.*', 'Rakefile', '{lib,spec}/**/*', '*.gemspec', '*.md']
-  spec.homepage              = 'https://github.com/mslinn/badge'
+  spec.homepage              = 'https://github.com/mslinn/jekyll_badge'
   spec.license               = 'MIT'
   spec.metadata = {
     'allowed_push_host' => 'https://rubygems.org',
@@ -19,7 +18,7 @@ Gem::Specification.new do |spec|
     'homepage_uri'      => spec.homepage,
     'source_code_uri'   => host,
   }
-  spec.name                 = 'badge'
+  spec.name                 = 'jekyll_badge'
   spec.post_install_message = <<~END_MESSAGE
 
     Thanks for installing #{spec.name}!
@@ -27,8 +26,8 @@ Gem::Specification.new do |spec|
   END_MESSAGE
   spec.require_paths         = ['lib']
   spec.required_ruby_version = '>= 3.1.0'
-  spec.summary               = 'Write summary of what the gem is for'
-  spec.version               = Badge::VERSION
+  spec.summary               = 'Displays a badge on a Jekyll page for the package showing its version'
+  spec.version               = JekyllBadge::VERSION
   spec.add_dependency 'jekyll', '>= 3.5.0'
   spec.add_dependency 'jekyll_plugin_support', '>= 0.7.0'
 end

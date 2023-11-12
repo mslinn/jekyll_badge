@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# The badge gem dependencies are defined in badge.gemspec
+# The jekyll_badge gem dependencies are defined in jekyll_badge.gemspec
 gemspec
 
 group :test, :development do

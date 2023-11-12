@@ -24,8 +24,8 @@ end
 
 task publish: [:build] do
   $VERBOSE = nil
-  load 'badge/version.rb'
-  system "gem push pkg/badge-#{Badge::VERSION}.gem"
+  load 'jekyll_badge/version.rb'
+  system "gem push pkg/jekyll_badge-#{Badge::VERSION}.gem"
 end
 
 desc 'Bump patch version, create git tag, build the gem and release to geminabox (default)'

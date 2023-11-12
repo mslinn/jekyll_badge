@@ -1,4 +1,4 @@
-require_relative '../lib/badge'
+require_relative '../lib/jekyll_badge'
 
 RSpec.describe Badge::Badge do
   let(:logger) do
