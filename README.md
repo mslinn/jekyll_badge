@@ -22,8 +22,13 @@ $ bundle
 
 ## Usage
 
-Describe how to use this gem
+See [demo/index.html](demo/index.html) for examples.
 
+
+### Options
+
+- `clear` &ndash; Ensure the badge is moved below (cleared) below floating elements that precede it.
+- `align` &ndash;
 
 ## Development
 

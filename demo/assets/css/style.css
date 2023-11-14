@@ -170,14 +170,18 @@ pre {
 
 /* Start of jekyll_badge classes */
 .center {
+  align-items: center;
   display: flex;
-  width: fit-content;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  width: fit-content;
 }
 
-.gem_banner {}
+.gem_banner .banner_label {
+  padding-left: 3pt;
+  padding-right: 3pt;
+}
 
 .imgFlex {
   display: flex;

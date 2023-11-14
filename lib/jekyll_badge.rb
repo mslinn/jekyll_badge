@@ -28,16 +28,16 @@ module JekyllBadge
     # end
 
     def render_impl
-      @check_links  = @helper.parameter_specified?('check_links')
-      @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
-      @name         = @helper.parameter_specified?('name')  || @page['name']
+      # @check_links  = @helper.parameter_specified?('check_links')
       @align        = @helper.parameter_specified?('align') || 'right'
+      @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
       @class        = @helper.parameter_specified?('class') || 'rounded shadow'
       # TODO: put this into _config.yml
+      @git_url_base = @helper.parameter_specified?('git_url_base') || 'https://github.com/mslinn'
       @image        = @helper.parameter_specified?('image') || '/blog/images/git/github-mark'
+      @name         = @helper.parameter_specified?('name')  || @page['name']
       @label        = @helper.parameter_specified?('label') || @name
       @style        = @helper.parameter_specified?('style') || ''
-      @git_url_base = @helper.parameter_specified?('git_url_base') || 'https://github.com/mslinn'
       @git_url      = @helper.parameter_specified?('git_url') || "#{@git_url_base}/#{@name}"
 
       unless %w[left center right].include? @align
@@ -55,6 +55,7 @@ module JekyllBadge
     private
 
     # Calling this method can slow down startup time dramatically because of HTTP timeouts
+    # Better to use this functionality in parallel, the way it was designed, instead of this
     def check_url
       puts 'Checking links, please wait ...'
       @link_checker.check @git_url
@@ -73,10 +74,10 @@ module JekyllBadge
       classes = "gem_banner #{@align} #{@class} #{@clear}".squish
       <<~END_CONTENT
         <div class="#{classes}" style='#{@style}'>
-          <div class="one_column" style="text-align: center;">
+          <div class="center one_column">
             <a href='https://rubygems.org/gems/#{@name}' target='_blank' class='imgImgUrl'>
-              #{"<code>#{@label}</code>" unless @label.empty?}
-              <div class='imgWrapper imgFlex' style='margin-bottom: 0;'>
+              #{"<code class='banner_label'>#{@label}</code>" unless @label.empty?}
+              <div class='imgWrapper imgFlex center' style='margin-bottom: 0;'>
                   <picture class='imgPicture'>
                     <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/webp">
                     <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/png">
@@ -89,7 +90,7 @@ module JekyllBadge
                   </picture>
                 </a>
               </div>
-              <div class='imgWrapper imgFlex' style='width: 120px;'>
+              <div class='imgWrapper imgFlex center' style='width: 120px;'>
                 <a href='https://github.com/mslinn/#{@name}' target='_blank' class='imgImgUrl'>
                   <picture class='imgPicture'>
                     <source srcset="#{@image}.webp" type="image/webp">

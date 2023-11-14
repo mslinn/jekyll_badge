@@ -15,7 +15,7 @@ title: Exercising Parameter Combinations
 {% jekyll_badge       align='left'   name='jekyll_pre' %}
 {% jekyll_badge clear align='center' name='jekyll_pre' %}
 {% jekyll_badge clear align='right'  name='jekyll_pre' %}
-{% jekyll_badge clear align='bad'    name='jekyll_pre' %}
+{% jekyll_badge clear align='bad'    name='bad align' %}
 <!-- endregion -->
 
 
@@ -31,9 +31,15 @@ title: Exercising Parameter Combinations
 <!-- endregion -->
 
 
-<!-- #region jekyll_badge label='somevalue' -->
-<h3 id="jekyll_badge" class="code clear">jekyll_badge label='somevalue'</h3>
-{% jekyll_badge label='somevalue' name='jekyll_pre' %}
+<!-- #region jekyll_badge label='A Label' -->
+<h3 id="jekyll_badge" class="code clear">jekyll_badge label='A Label'</h3>
+{% jekyll_badge label='A Label' name='jekyll_pre' %}
+<!-- endregion -->
+
+
+<!-- #region jekyll_badge label='This is an overly long label' -->
+<h3 id="jekyll_badge" class="code clear">jekyll_badge label='This is an overly long label'</h3>
+{% jekyll_badge label='This is an overly long label' name='jekyll_pre' %}
 <!-- endregion -->
 
 
@@ -97,13 +103,13 @@ title: Exercising Parameter Combinations
 <!-- endregion -->
 
 
-<!-- #region jekyll_badge class='somevalue' label='somevalue' style='somevalue' -->
-<h3 id="jekyll_badge" class="code clear">jekyll_badge class='somevalue' label='somevalue' style='somevalue'</h3>
-{% jekyll_badge class='somevalue' label='somevalue' name='jekyll_pre' style='somevalue' %}
+<!-- #region jekyll_badge class='bg_pink' label='My Label' style='border: dashed;' -->
+<h3 id="jekyll_badge" class="code clear">jekyll_badge class='bg_pink' label='My Label' style='border: dashed;'</h3>
+{% jekyll_badge class='bg_pink' label='My Label' name='jekyll_pre' style='border: dashed;' %}
 <!-- endregion -->
 
 
-<!-- #region jekyll_badge align='somevalue' class='somevalue' label='somevalue' style='somevalue' -->
-<h3 id="jekyll_badge" class="code clear">jekyll_badge align='somevalue' class='somevalue' label='somevalue' style='somevalue'</h3>
-{% jekyll_badge align='somevalue' class='somevalue' label='somevalue' name='jekyll_pre' style='somevalue' %}
+<!-- #region jekyll_badge align='center' class='bg_pink' label='My Label' style='border: dashed;' -->
+<h3 id="jekyll_badge" class="code clear">jekyll_badge align='center' class='bg_pink' label='My Label' style='border: dashed;'</h3>
+{% jekyll_badge align='center' class='bg_pink' label='My Label' name='jekyll_pre' style='border: dashed;' %}
 <!-- endregion -->
