@@ -27,8 +27,11 @@ See [demo/index.html](demo/index.html) for examples.
 
 ### Options
 
+- `align` &ndash; Float badge `left`, `center` or `right`.
+- `class` &ndash; Override default class for generated badge (`rounded shadow`).
 - `clear` &ndash; Ensure the badge is moved below (cleared) below floating elements that precede it.
-- `align` &ndash;
+- `git_url_base` &ndash; Override the default value specified in
+
 
 ## Development
 

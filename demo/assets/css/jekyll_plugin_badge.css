@@ -1,0 +1,9 @@
+.gem_banner .banner_label {
+  padding-left: 3pt;
+  padding-right: 3pt;
+}
+
+.one_column {
+  display: flex;
+  flex-direction: column;
+}
