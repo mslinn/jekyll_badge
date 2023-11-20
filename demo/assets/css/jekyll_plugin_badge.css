@@ -1,9 +1,15 @@
-.gem_banner .banner_label {
+.gem_banner {
+  background-color: ivory;
+  margin-bottom: 1em;
+}
+
+.gem_banner .one_column {
   padding-left: 3pt;
   padding-right: 3pt;
 }
 
 .one_column {
+  align-items: center;
   display: flex;
   flex-direction: column;
 }

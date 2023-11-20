@@ -1,6 +1,6 @@
 # `Badge` [![Gem Version](https://jekyll_badge.fury.io/rb/jekyll_badge.svg)](https://jekyll_badge.fury.io/rb/jekyll_badge)
 
-Description of Badge
+Displays a badge on a Jekyll page for the package showing its version.
 
 
 ## Installation
