@@ -1,6 +1,8 @@
 .gem_banner {
   background-color: ivory;
-  margin-bottom: 1em;
+  margin: auto;
+  margin-bottom: 2em;
+  width: fit-content;
 }
 
 .gem_banner .one_column {

@@ -46,6 +46,7 @@ GEM
     classifier-reborn (2.3.0)
       fast-stemmer (~> 1.0)
       matrix (~> 0.4)
+    coderay (1.1.3)
     colorator (1.1.0)
     concurrent-ruby (1.2.2)
     console (1.23.2)
@@ -70,7 +71,7 @@ GEM
     fiber-annotation (0.2.0)
     fiber-local (1.0.0)
     forwardable-extended (2.6.0)
-    google-protobuf (3.25.0-x86_64-linux)
+    google-protobuf (3.25.1-x86_64-linux)
     hashery (2.1.2)
     html-proofer (5.0.8)
       addressable (~> 2.3)
@@ -119,11 +120,12 @@ GEM
     jekyll_plugin_logger (2.1.1)
       bump
       jekyll (>= 3.5.0)
-    jekyll_plugin_support (0.7.2)
+    jekyll_plugin_support (0.8.0)
       facets
       jekyll (>= 3.5.0)
       jekyll_plugin_logger
       key-value-parser
+      pry
     json (2.6.3)
     key-value-parser (0.0.2)
     kramdown (2.4.0)
@@ -140,8 +142,9 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     matrix (0.4.2)
     mercenary (0.4.0)
+    method_source (1.0.0)
     minitest (5.20.0)
-    nokogiri (1.15.4-x86_64-linux)
+    nokogiri (1.15.5-x86_64-linux)
       racc (~> 1.4)
     nuggets (1.6.1)
     parallel (1.23.0)
@@ -156,9 +159,12 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.1.1.1)
       stringio
-    public_suffix (5.0.3)
+    public_suffix (5.0.4)
     racc (1.7.3)
     rack (3.0.8)
     rainbow (3.1.1)
@@ -214,7 +220,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 3)
     timers (4.3.5)
     ttfunk (1.7.0)
-    typhoeus (1.4.0)
+    typhoeus (1.4.1)
       ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
