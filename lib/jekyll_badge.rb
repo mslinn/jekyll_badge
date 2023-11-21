@@ -18,17 +18,7 @@ module JekyllBadge
     PLUGIN_NAME = 'jekyll_badge'.freeze
     VERSION = ::JekyllBadge::VERSION
 
-    # def initialize(tag_name, argument_string, parse_context)
-    #   super
-    #   LinkChecker::Net::HTTP.configure do |config|
-    #     config.read_timeout = 5
-    #     config.open_timeout = 10
-    #   end
-    #   @link_checker = LinkChecker::Net::HTTP::Checker.new
-    # end
-
     def render_impl
-      # @check_links  = @helper.parameter_specified?('check_links')
       @align        = @helper.parameter_specified?('align') || 'right'
       @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
       @class        = @helper.parameter_specified?('class') || 'rounded shadow'
