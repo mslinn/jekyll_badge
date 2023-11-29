@@ -47,7 +47,7 @@ module JekyllBadge
     # Calling this method can slow down startup time dramatically because of HTTP timeouts
     # Better to use this functionality in parallel, the way it was designed, instead of this
     def check_url
-      puts 'Checking links, please wait ...'
+      @helper.logger.info 'Checking links, please wait ...'
       @link_checker.check @git_url
       @link_checker.results.each_pair do |_bucket, result|
         if result
