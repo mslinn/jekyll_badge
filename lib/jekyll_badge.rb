@@ -14,7 +14,7 @@ end
 module JekyllBadge
   # This class implements the jekyll_badge functionality
   # Assumes project is stored on GitHub
-  class JekyllBadge < JekyllSupport::JekyllTag
+  class JekyllBadge < ::JekyllSupport::JekyllTag
     PLUGIN_NAME = 'jekyll_badge'.freeze
     VERSION = ::JekyllBadge::VERSION
 
@@ -99,6 +99,6 @@ module JekyllBadge
       END_CONTENT
     end
 
-    JekyllPluginHelper.register(self, PLUGIN_NAME)
+    ::JekyllSupport::JekyllPluginHelper.register(self, PLUGIN_NAME)
   end
 end
