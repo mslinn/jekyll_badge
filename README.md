@@ -19,6 +19,10 @@ And then execute:
 $ bundle
 ```
 
+### Image
+
+Copy the contents of `demo/blog/images/git/` to a similarly named directory on your website.
+
 
 ## Usage
 
