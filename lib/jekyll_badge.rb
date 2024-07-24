@@ -81,7 +81,7 @@ module JekyllBadge
                 </a>
               </div>
               <div class='imgWrapper imgFlex center' style='width: 120px;'>
-                <a href='https://github.com/mslinn/#{@name}' target='_blank' class='imgImgUrl'>
+                <a href="#{@git_url}" target='_blank' class='imgImgUrl'>
                   <picture class='imgPicture'>
                     <source srcset="#{@image}.webp" type="image/webp">
                     <source srcset="#{@image}.png" type="image/png">
