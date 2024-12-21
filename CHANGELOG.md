@@ -1,5 +1,10 @@
 # Change Log
 
+## (in progress)
+
+* Added `spec.platform` to `jekyll_badge.gemspec` because `RubyGems.org` now requires it
+
+
 ## 0.1.2
 
 * Updated to `jekyll_plugin_support` v1.0.0
