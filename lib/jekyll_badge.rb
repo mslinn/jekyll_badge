@@ -30,6 +30,8 @@ module JekyllBadge
       @style        = @helper.parameter_specified?('style') || ''
       @git_url      = @helper.parameter_specified?('git_url') || "#{@git_url_base}/#{@name}"
 
+      @label = @label.gsub('_', '_<wbr>')
+
       unless %w[left center right].include? @align
         @helper.logger.warn { "Ignoring invalid align value ('#{@align}') on line #{@line_number} (plus front matter) of #{@page['name']}." }
         @align = 'right'

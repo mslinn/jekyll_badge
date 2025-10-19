@@ -1,8 +1,9 @@
 # Change Log
 
-## (in progress)
+## 0.1.3 / 2025-10-19 in progress
 
 * Added `spec.platform` to `jekyll_badge.gemspec` because `RubyGems.org` now requires it
+* Long labels are now wrapped after underscores
 
 
 ## 0.1.2
