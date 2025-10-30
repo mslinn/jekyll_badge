@@ -2,6 +2,22 @@ module JekyllBadge
   class JekyllBadge
     private
 
+    # Calling this method can slow down startup time dramatically because of HTTP timeouts
+    # Better to use this functionality in parallel, the way it was designed, instead of this way
+    def check_url
+      @helper.logger.info 'Checking links, please wait ...'
+      @link_checker.check @git_url
+      @link_checker.results.each_pair do |_bucket, result|
+        if result
+          output
+        else
+          msg = "Error: #{@git_url} is broken"
+          @helper.logger.error { msg }
+          "<span style='color: red;'>#{msg}</span>"
+        end
+      end
+    end
+
     def debug
       return unless @debug
 
@@ -13,22 +29,6 @@ module JekyllBadge
       debug += "image=#{@image}"
       debug += "</pre>\n"
       debug
-    end
-
-    # Calling this method can slow down startup time dramatically because of HTTP timeouts
-    # Better to use this functionality in parallel, the way it was designed, instead of this way
-    def check_url
-      @helper.logger.info 'Checking links, please wait ...'
-      @link_checker.check @git_url
-      @link_checker.results.each_pair do |_bucket, result|
-        if result
-          generate_output
-        else
-          msg = "Error: #{@git_url} is broken"
-          @helper.logger.error { msg }
-          "<span style='color: red;'>#{msg}</span>"
-        end
-      end
     end
 
     def default_alt

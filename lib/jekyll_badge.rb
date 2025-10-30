@@ -57,7 +57,7 @@ module JekyllBadge
       if @check_links
         check_url
       else
-        generate_output
+        output
       end
     end
 
