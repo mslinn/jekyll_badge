@@ -31,15 +31,39 @@ See [demo/index.html](demo/index.html) for examples.
 
 ### Options
 
-- `align` &ndash; Float badge `left`, `center` or `right`.
-- `class` &ndash; Override default class for generated badge (`rounded shadow`).
-- `clear` &ndash; Ensure the badge is moved below (cleared) below floating elements that precede it.
-- `git_url_base` &ndash; Override the default value (`https://github.com/mslinn`)
-- `image` &ndash; Override the default value (`/blog/images/git/github-mark`)
-- `name` &ndash; Override the default value (name of page)
-- `label` &ndash; Override the default value (name value above)
-- `style` &ndash; CSS style
-- `git_url` &ndash; Override the default value(`git_url_base/name`)
+#### Keyword Options
+
+- `clear`    &ndash; Ensures the badge is rendered below preceding floating elements.
+
+
+#### Primary Options
+
+Override these name/value options as required.
+
+- `align`    &ndash; Align badge `left`, `center` or `right`, defaults to `right`.
+- `alt`      &ndash; Alt text for badge image, also used as title for badge.
+  Defaults to `name`.
+- `class`    &ndash; Override classes for generated badge,
+  defaults to `rounded shadow`.
+- `dist_url` &ndash; Badge banner link target,
+  defaults to `https://rubygems.org/gems/name`.
+- `image`    &ndash; Git repository image, without the filetype,
+  defaults to `/blog/images/git/github-mark`.
+- `name`     &ndash; name of component, defaults to the name of the enclosing page.
+- `label`    &ndash; displayed name of the badge, defaults to `name`.
+- `style`    &ndash; Additional CSS style for the badge container.
+- `title`    &ndash; Displayed text when the user hovers their mouse over the
+  badge. Defaults to the `alt` value.
+
+#### Derived Options
+
+Derived options can be overridden, just like primary options.
+
+- `badge_svg`    &ndash; URL for badge image,
+  defaults to `https://badge.fury.io/rb/name.svg`.
+- `git_url_base` &ndash; GitHub User URL,
+  defaults to `https://github.com/mslinn`.
+- `git_url`      &ndash; Repository URL, defaults to `git_url_base/name`.
 
 
 ## Development

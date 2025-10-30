@@ -30,7 +30,10 @@ module JekyllBadge
       @style        = @helper.parameter_specified?('style') || ''
 
       @alt          = @helper.parameter_specified?('alt') || @name
-      @git_url      = @helper.parameter_specified?('git_url') || "#{@git_url_base}/#{@name}"
+      @badge_svg    = @helper.parameter_specified?('badge_src') || "https://badge.fury.io/rb/#{@name}.svg"
+      @dist_url     = @helper.parameter_specified?('dist_url')  || "https://rubygems.org/gems/#{@name}"
+      @git_url      = @helper.parameter_specified?('git_url')   || "#{@git_url_base}/#{@name}"
+      @title        = " title='@alt'" if @alt
 
       @label = @label.gsub('_', '_<wbr>')
 
@@ -72,28 +75,30 @@ module JekyllBadge
                else
                  <<~RXF
                    <source srcset="#{@image}.webp" type="image/webp">
-                   <source srcset="#{@image}.png" type="image/png">
+                   <source srcset="#{@image}.png"  type="image/png">
                  RXF
                end
 
       <<~END_CONTENT
-        <div class="#{classes}" style='#{@style}'>
+        <div class="#{classes}" style='#{@style}'#{@title}>
           <div class="center one_column">
-            <a href='https://rubygems.org/gems/#{@name}' target='_blank' class='imgImgUrl'>
+            <a href='#{@dist_url}' target='_blank' class='imgImgUrl'>
+              <!-- Badge banner with version info -->
               #{"<code class='banner_label'>#{@label}</code>" unless @label.empty?}
               <div class='imgWrapper imgFlex center' style='margin-bottom: 0;'>
                   <picture class='imgPicture'>
-                    <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/webp">
-                    <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/png">
+                    <source srcset="#{@badge_svg}" type="image/webp">
+                    <source srcset="#{@badge_svg}" type="image/png">
                     <img alt='#{@alt} version'
                       class="imgImg"
-                      src="https://badge.fury.io/rb/#{@name}.svg"
+                      src="#{@badge_svg}"
                       style='width: 100%;'
                       title='#{@name} version'
                     />
                   </picture>
                 </a>
               </div>
+              <!-- Remainder of badge content -->
               <div class='imgWrapper imgFlex center' style='width: 120px;'>
                 <a href="#{@git_url}" target='_blank' class='imgImgUrl'>
                   <picture class='imgPicture'>
