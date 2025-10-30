@@ -34,7 +34,7 @@ See [demo/index.html](demo/index.html) for examples.
 #### Keyword Options
 
 - `clear`    &ndash; Ensures the badge is rendered below preceding floating elements.
-
+- `debug`    &ndash; Display debugging information on the rendered page
 
 #### Primary Options
 
@@ -45,7 +45,7 @@ Override these name/value options as required.
   Defaults to `name`.
 - `class`    &ndash; Override classes for generated badge,
   defaults to `rounded shadow`.
-- `dist_url` &ndash; Badge banner link target,
+- `dist_url` &ndash; Badge banner link target (download page),
   defaults to `https://rubygems.org/gems/name`.
 - `image`    &ndash; Git repository image, without the filetype,
   defaults to `/blog/images/git/github-mark`.

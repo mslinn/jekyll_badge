@@ -20,6 +20,7 @@ module JekyllBadge
 
     def render_impl
       @align        = @helper.parameter_specified?('align') || 'right'
+      @debug        = @helper.parameter_specified?('debug')
       @class        = @helper.parameter_specified?('class') || 'rounded shadow'
       @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
       # TODO: put this into _config.yml
@@ -33,7 +34,7 @@ module JekyllBadge
       @badge_svg    = @helper.parameter_specified?('badge_src') || "https://badge.fury.io/rb/#{@name}.svg"
       @dist_url     = @helper.parameter_specified?('dist_url')  || "https://rubygems.org/gems/#{@name}"
       @git_url      = @helper.parameter_specified?('git_url')   || "#{@git_url_base}/#{@name}"
-      @title        = " title='@alt'" if @alt
+      @title        = " title='#{@alt}'" if @alt
 
       @label = @label.gsub('_', '_<wbr>')
 
@@ -70,6 +71,17 @@ module JekyllBadge
     def generate_output
       classes = "gem_banner #{@align} #{@class} #{@clear}".squish
 
+      @style = "#{@style} width: 28em;" if @debug
+      if @debug
+        debug = "\n<pre>"
+        debug += "badge_svg=#{@badge_svg}\n"
+        debug += "dist_url=#{@dist_url}\n"
+        debug += "git_url_base=#{@git_url_base}\n"
+        debug += "git_url=#{@git_url}\n"
+        debug += "image=#{@image}"
+        debug += "</pre>\n"
+      end
+
       source = if @image.start_with?('http')
                  @image
                else
@@ -82,7 +94,7 @@ module JekyllBadge
       <<~END_CONTENT
         <div class="#{classes}" style='#{@style}'#{@title}>
           <div class="center one_column">
-            <a href='#{@dist_url}' target='_blank' class='imgImgUrl'>
+            <a class='imgImgUrl' href='#{@git_url}' target='_blank'>
               <!-- Badge banner with version info -->
               #{"<code class='banner_label'>#{@label}</code>" unless @label.empty?}
               <div class='imgWrapper imgFlex center' style='margin-bottom: 0;'>
@@ -112,7 +124,7 @@ module JekyllBadge
                   </picture>
               </div>
             </a>
-          </div>
+          </div>#{debug}
         </div>
       END_CONTENT
     end
