@@ -19,25 +19,36 @@ module JekyllBadge
     VERSION = ::JekyllBadge::VERSION
 
     def render_impl
-      @align        = @helper.parameter_specified?('align') || 'right'
-      @debug        = @helper.parameter_specified?('debug')
-      @class        = @helper.parameter_specified?('class') || 'rounded shadow'
+      # Keyword options
       @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
+      @debug        = @helper.parameter_specified?('debug')
+
+      # Primary options
+      @align        = @helper.parameter_specified?('align') || 'right'
+      @class        = @helper.parameter_specified?('class') || 'rounded shadow'
       # TODO: put this into _config.yml
       @git_url_base = @helper.parameter_specified?('git_url_base') || 'https://github.com/mslinn'
-      @image        = @helper.parameter_specified?('image') || '/blog/images/git/github-mark'
+      @image        = @helper.parameter_specified?('image')        || '/blog/images/git/github-mark'
+      @style        = @helper.parameter_specified?('style')        || ''
+      @type         = @helper.parameter_specified?('type')         || 'ruby_gem'
+      @user_id      = @helper.parameter_specified?('user_id')      || 'mslinn'
+
+      # Derived options
       @name         = @helper.parameter_specified?('name')  || @page['name']
       @label        = @helper.parameter_specified?('label') || @name
-      @style        = @helper.parameter_specified?('style') || ''
+      @style        = "#{@style} width: 28em;".squish if @debug
 
-      @alt          = @helper.parameter_specified?('alt') || @name
-      @badge_svg    = @helper.parameter_specified?('badge_src') || "https://badge.fury.io/rb/#{@name}.svg"
-      @dist_url     = @helper.parameter_specified?('dist_url')  || "https://rubygems.org/gems/#{@name}"
+      # Further derived options
+      @alt          = @helper.parameter_specified?('alt')       || default_alt
+      @badge_svg    = @helper.parameter_specified?('badge_src') || default_badge_svg
+      @dist_url     = @helper.parameter_specified?('dist_url')  || default_dist_url
       @git_url      = @helper.parameter_specified?('git_url')   || "#{@git_url_base}/#{@name}"
+
+      # Yet further derived options
       @title        = " title='#{@alt}'" if @alt
 
+      # Tweaking
       @label = @label.gsub('_', '_<wbr>')
-
       unless %w[left center right].include? @align
         @helper.logger.warn { "Ignoring invalid align value ('#{@align}') on line #{@line_number} (plus front matter) of #{@page['name']}." }
         @align = 'right'
@@ -50,85 +61,9 @@ module JekyllBadge
       end
     end
 
-    private
-
-    # Calling this method can slow down startup time dramatically because of HTTP timeouts
-    # Better to use this functionality in parallel, the way it was designed, instead of this
-    def check_url
-      @helper.logger.info 'Checking links, please wait ...'
-      @link_checker.check @git_url
-      @link_checker.results.each_pair do |_bucket, result|
-        if result
-          generate_output
-        else
-          msg = "Error: #{@git_url} is broken"
-          @helper.logger.error { msg }
-          "<span style='color: red;'>#{msg}</span>"
-        end
-      end
-    end
-
-    def generate_output
-      classes = "gem_banner #{@align} #{@class} #{@clear}".squish
-
-      @style = "#{@style} width: 28em;" if @debug
-      if @debug
-        debug = "\n<pre>"
-        debug += "badge_svg=#{@badge_svg}\n"
-        debug += "dist_url=#{@dist_url}\n"
-        debug += "git_url_base=#{@git_url_base}\n"
-        debug += "git_url=#{@git_url}\n"
-        debug += "image=#{@image}"
-        debug += "</pre>\n"
-      end
-
-      source = if @image.start_with?('http')
-                 @image
-               else
-                 <<~RXF
-                   <source srcset="#{@image}.webp" type="image/webp">
-                   <source srcset="#{@image}.png"  type="image/png">
-                 RXF
-               end
-
-      <<~END_CONTENT
-        <div class="#{classes}" style='#{@style}'#{@title}>
-          <div class="center one_column">
-            <a class='imgImgUrl' href='#{@git_url}' target='_blank'>
-              <!-- Badge banner with version info -->
-              #{"<code class='banner_label'>#{@label}</code>" unless @label.empty?}
-              <div class='imgWrapper imgFlex center' style='margin-bottom: 0;'>
-                  <picture class='imgPicture'>
-                    <source srcset="#{@badge_svg}" type="image/webp">
-                    <source srcset="#{@badge_svg}" type="image/png">
-                    <img alt='#{@alt} version'
-                      class="imgImg"
-                      src="#{@badge_svg}"
-                      style='width: 100%;'
-                      title='#{@name} version'
-                    />
-                  </picture>
-                </a>
-              </div>
-              <!-- Remainder of badge content -->
-              <div class='imgWrapper imgFlex center' style='width: 120px;'>
-                <a href="#{@git_url}" target='_blank' class='imgImgUrl'>
-                  <picture class='imgPicture'>
-                    #{source}
-                    <img alt='GitHub project for #{@name}'
-                      class="imgImg"
-                      src="/blog/images/git/github-mark.png"
-                      style='width: 100%;'
-                      title='Git project for #{@name}'
-                    />
-                  </picture>
-              </div>
-            </a>
-          </div>#{debug}
-        </div>
-      END_CONTENT
-    end
-
     ::JekyllSupport::JekyllPluginHelper.register(self, PLUGIN_NAME)
   end
 end
+
+require_relative 'jekyll_badge_private'
+require_relative 'jekyll_badge_generate'

@@ -54,6 +54,10 @@ Override these name/value options as required.
 - `style`    &ndash; Additional CSS style for the badge container.
 - `title`    &ndash; Displayed text when the user hovers their mouse over the
   badge. Defaults to the `alt` value.
+- `type`     &ndash; Type of badge to display.
+  Choices are `ruby_gem` (default) and `golang`.
+- `user_id`  &ndash; GitHub user id
+  (only required for type `golang`, defaults to `mslinn`.)
 
 #### Derived Options
 

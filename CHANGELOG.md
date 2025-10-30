@@ -4,7 +4,7 @@
 
 * Added documentation for new options:
   `alt`, `badge_svg`, `class`, `dist_url`, `git_url`, `image`, `name`, `label`,
-  `style`, and `title`
+  `style`, `title` and `user_id`
 * Added `spec.platform` to `jekyll_badge.gemspec` because `RubyGems.org` now requires it
 * Long labels are now wrapped after underscores
 
