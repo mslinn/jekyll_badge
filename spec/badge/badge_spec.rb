@@ -1,6 +1,6 @@
-require_relative '../lib/jekyll_badge'
+require_relative '../../lib/jekyll_badge'
 
-RSpec.describe Badge::Badge do
+RSpec.describe JekyllBadge do
   let(:logger) do
     PluginMetaLogger.instance.new_logger(self, PluginMetaLogger.instance.config)
   end
@@ -8,6 +8,6 @@ RSpec.describe Badge::Badge do
   let(:parse_context) { TestParseContext.new }
 
   it 'has a test' do
-    expect(true).to be_true
+    expect(true).to be_truthy
   end
 end

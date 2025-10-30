@@ -20,14 +20,16 @@ module JekyllBadge
 
     def render_impl
       @align        = @helper.parameter_specified?('align') || 'right'
-      @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
       @class        = @helper.parameter_specified?('class') || 'rounded shadow'
+      @clear        = @helper.parameter_specified?('clear') ? 'clear' : nil
       # TODO: put this into _config.yml
       @git_url_base = @helper.parameter_specified?('git_url_base') || 'https://github.com/mslinn'
       @image        = @helper.parameter_specified?('image') || '/blog/images/git/github-mark'
       @name         = @helper.parameter_specified?('name')  || @page['name']
       @label        = @helper.parameter_specified?('label') || @name
       @style        = @helper.parameter_specified?('style') || ''
+
+      @alt          = @helper.parameter_specified?('alt') || @name
       @git_url      = @helper.parameter_specified?('git_url') || "#{@git_url_base}/#{@name}"
 
       @label = @label.gsub('_', '_<wbr>')
@@ -64,6 +66,16 @@ module JekyllBadge
 
     def generate_output
       classes = "gem_banner #{@align} #{@class} #{@clear}".squish
+
+      source = if @image.start_with?('http')
+                 @image
+               else
+                 <<~RXF
+                   <source srcset="#{@image}.webp" type="image/webp">
+                   <source srcset="#{@image}.png" type="image/png">
+                 RXF
+               end
+
       <<~END_CONTENT
         <div class="#{classes}" style='#{@style}'>
           <div class="center one_column">
@@ -73,7 +85,7 @@ module JekyllBadge
                   <picture class='imgPicture'>
                     <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/webp">
                     <source srcset="https://badge.fury.io/rb/#{@name}.svg" type="image/png">
-                    <img alt='#{@name} version'
+                    <img alt='#{@alt} version'
                       class="imgImg"
                       src="https://badge.fury.io/rb/#{@name}.svg"
                       style='width: 100%;'
@@ -85,8 +97,7 @@ module JekyllBadge
               <div class='imgWrapper imgFlex center' style='width: 120px;'>
                 <a href="#{@git_url}" target='_blank' class='imgImgUrl'>
                   <picture class='imgPicture'>
-                    <source srcset="#{@image}.webp" type="image/webp">
-                    <source srcset="#{@image}.png" type="image/png">
+                    #{source}
                     <img alt='GitHub project for #{@name}'
                       class="imgImg"
                       src="/blog/images/git/github-mark.png"

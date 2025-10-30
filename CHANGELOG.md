@@ -1,7 +1,8 @@
 # Change Log
 
-## 0.1.3 / 2025-10-19 in progress
+## 0.1.3 / 2025-10-29
 
+* Added documentation for new options: `image`, `name`, `label`, `style`, `git_url`
 * Added `spec.platform` to `jekyll_badge.gemspec` because `RubyGems.org` now requires it
 * Long labels are now wrapped after underscores
 

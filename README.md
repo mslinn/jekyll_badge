@@ -34,7 +34,12 @@ See [demo/index.html](demo/index.html) for examples.
 - `align` &ndash; Float badge `left`, `center` or `right`.
 - `class` &ndash; Override default class for generated badge (`rounded shadow`).
 - `clear` &ndash; Ensure the badge is moved below (cleared) below floating elements that precede it.
-- `git_url_base` &ndash; Override the default value specified in
+- `git_url_base` &ndash; Override the default value (`https://github.com/mslinn`)
+- `image` &ndash; Override the default value (`/blog/images/git/github-mark`)
+- `name` &ndash; Override the default value (name of page)
+- `label` &ndash; Override the default value (name value above)
+- `style` &ndash; CSS style
+- `git_url` &ndash; Override the default value(`git_url_base/name`)
 
 
 ## Development
